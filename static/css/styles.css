@@ -1,0 +1,21 @@
+/*body {*/
+/*    margin-top: 20px;*/
+/*}*/
+
+.link-to-page {
+    float: right;
+    margin: 0 2px 0 2px;
+}
+
+
+.nav {
+  text-align: center;
+  background-color: black;
+  padding: 10px 0;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  padding: 0px 20px;
+}
