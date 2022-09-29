@@ -26,7 +26,7 @@ python manage.py runserver
 
 ### Deploying / Publishing
 
-[taxi-service project deployed to Heroku](LINK HERE)
+[taxi-service project deployed to Heroku](https://taxi-service1.herokuapp.com/)
 
 
 
