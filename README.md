@@ -15,8 +15,14 @@ cd taxi-sevice
 pip install virtualenv venv
 venv\Scripts\activate
 pip install -r requirementes.txt
-python manage.py runserver
+python manage.py runserver 
 ```
+- Use the following command to load prepared data from fixture to test and debug your code:
+  `python manage.py loaddata taxi_service_db_data.json`.
+- After loading data from fixture you can use following superuser (or create another one by yourself):
+  - Login: `director`
+  - Password: `taxi-service`
+
 
 ### Deploying / Publishing
 
