@@ -180,3 +180,7 @@ class MessageCreateView(LoginRequiredMixin, generic.CreateView):
 
 def header_about(request):
     return render(request, "taxi/about.html")
+
+
+def header_contacts(request):
+    return render(request, "taxi/contacts.html")

@@ -20,11 +20,13 @@ from .views import (
     MessageListView,
     MessageCreateView,
     header_about,
+    header_contacts
 )
 
 urlpatterns = [
     path("", index, name="index"),
     path("about/", header_about, name="about"),
+    path("contacts/", header_contacts, name="contacts"),
 
     path("manufacturers/", ManufacturerListView.as_view(), name="manufacturer-list"),
     path(
