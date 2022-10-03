@@ -18,11 +18,13 @@ from .views import (
     ManufacturerDeleteView,
     toggle_assign_to_car,
     MessageListView,
-    MessageCreateView
+    MessageCreateView,
+    header_about,
 )
 
 urlpatterns = [
     path("", index, name="index"),
+    path("about/", header_about, name="about"),
 
     path("manufacturers/", ManufacturerListView.as_view(), name="manufacturer-list"),
     path(

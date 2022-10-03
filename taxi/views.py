@@ -176,3 +176,7 @@ class MessageCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+def header_about(request):
+    return render(request, "taxi/about.html")
