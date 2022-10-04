@@ -16,14 +16,9 @@
 
 <body>
 <link rel="icon" type="image/png" href="{% static 'png-clipart-taxi-logo-taxi-text-sign.png' %}">
-<header>
-      <nav class="nav">
-      <a href="{% url 'taxi:index' %}" class="link">Home</a>
-      <a href="{% url 'taxi:about' %}" class="link">About</a>
-      <a href="https://www.google.be/maps/@50.5010573,4.466112,8z" target="_blank" class="link">Maps</a>
-      <a href="{% url 'taxi:contacts' %}" class="link">Contacts</a>
-      </nav>
-</header>
+{% block header %}
+  {% include "includes/heder.html" %}
+{% endblock %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">

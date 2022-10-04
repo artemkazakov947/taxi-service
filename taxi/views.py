@@ -36,7 +36,7 @@ class ManufacturerListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "manufacturer_list"
     template_name = "taxi/manufacturer_list.html"
     queryset = Manufacturer.objects.all()
-    paginate_by = 5
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ManufacturerListView, self).get_context_data(**kwargs)
@@ -112,7 +112,7 @@ class CarDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class DriverListView(LoginRequiredMixin, generic.ListView):
     model = Driver
-    paginate_by = 5
+    paginate_by = 3
     queryset = Driver.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
