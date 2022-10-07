@@ -53,13 +53,11 @@ class Message(models.Model):
         return self.liked.all().count()
 
 
-LIKE_CHOICES = (
-    ("Like", "Like"),
-    ("Unlike", "Unlike"),
-)
-
-
 class Like(models.Model):
+    LIKE_CHOICES = (
+        ("Like", "Like"),
+        ("Unlike", "Unlike"),
+    )
     post = models.ForeignKey(Message, on_delete=models.CASCADE)
     user = models.ForeignKey(Driver, on_delete=models.CASCADE)
     value = models.CharField(choices=LIKE_CHOICES, default="Like", max_length=10)

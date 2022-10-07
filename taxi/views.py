@@ -164,6 +164,14 @@ def toggle_assign_to_car(request, pk):
     return HttpResponseRedirect(reverse_lazy("taxi:car-detail", args=[pk]))
 
 
+def header_about(request):
+    return render(request, "taxi/about.html")
+
+
+def header_contacts(request):
+    return render(request, "taxi/contacts.html")
+
+
 class MessageListView(LoginRequiredMixin, generic.ListView):
     model = Message
     queryset = Message.objects.all()
@@ -178,14 +186,6 @@ class MessageCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
-
-def header_about(request):
-    return render(request, "taxi/about.html")
-
-
-def header_contacts(request):
-    return render(request, "taxi/contacts.html")
 
 
 class MessageDetailView(LoginRequiredMixin, generic.DetailView):
