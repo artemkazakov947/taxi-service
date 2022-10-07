@@ -8,7 +8,16 @@
       <div>
         <strong>Topic</strong>: {{ message.title }}<br>
         <strong>{{ message.author.username }}</strong>: {{ message.text }} <br>
-        date: {{ message.date }}
+        <strong>date</strong>: {{ message.date }}
+        <a href="{% url 'taxi:message-detail' pk=message.id %}">Click to see detail.</a>
+
+        <form action="{% url 'taxi:message-like' %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="message_id" value="{{ message.id }}">
+          <button type="submit" class="btn btn-primary">Like!</button>
+          <span>{{ message.liked.count }} likes!</span>
+        </form>
+        <br>
         <hr>
       </div>
     {% endfor %}

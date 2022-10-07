@@ -1,11 +1,13 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Driver, Car, Manufacturer, Message
+from .models import Driver, Car, Manufacturer, Message, Like
 from .forms import DriverCreationForm, DriverLicenseUpdateForm, CarForm, DriverSearchForm, CarSearchForm, \
     ManufacturerSearchForm
 
@@ -184,3 +186,28 @@ def header_about(request):
 
 def header_contacts(request):
     return render(request, "taxi/contacts.html")
+
+
+class MessageDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Message
+    template_name = "taxi/message_detail.html"
+
+
+def like_message(request):
+    user = get_user_model().objects.get(id=request.user.id)
+    if request.method == "POST":
+        message_id = request.POST.get("message_id")
+        message = Message.objects.get(id=message_id)
+        if user in message.liked.all():
+            message.liked.remove(user)
+        else:
+            message.liked.add(user)
+
+        like, created = Like.objects.get_or_create(post=message, user=user)
+        if not created:
+            if like.value == "Like":
+                like.value = "Unlike"
+            else:
+                like.value = "Like"
+        like.save()
+    return HttpResponseRedirect(reverse_lazy("taxi:message-list"))

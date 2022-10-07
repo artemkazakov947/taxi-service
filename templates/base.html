@@ -12,16 +12,16 @@
     <!-- Add additional CSS in static file -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'png-clipart-taxi-logo-taxi-text-sign.png' %}">
 </head>
 
 <body>
-<link rel="icon" type="image/png" href="{% static 'png-clipart-taxi-logo-taxi-text-sign.png' %}">
 {% block header %}
-  {% include "includes/heder.html" %}
+  {% include "includes/header.html" %}
 {% endblock %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2">
+    <div class="row flex-nowrap">
+        <div class=class="col-md-3">
 
             {% block sidebar %}
                 {% include "includes/sidebar.html" %}

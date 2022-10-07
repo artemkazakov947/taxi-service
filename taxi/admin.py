@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Driver, Car, Manufacturer
+from .models import Driver, Car, Manufacturer, Message
 
 
 @admin.register(Driver)
@@ -21,3 +21,5 @@ class CarAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Manufacturer)
+
+admin.site.register(Message)

@@ -20,7 +20,9 @@ from .views import (
     MessageListView,
     MessageCreateView,
     header_about,
-    header_contacts
+    header_contacts,
+    MessageDetailView,
+    like_message,
 )
 
 urlpatterns = [
@@ -55,7 +57,6 @@ urlpatterns = [
     path("drivers/", DriverListView.as_view(), name="driver-list"),
     path("drivers/<int:pk>/", DriverDetailView.as_view(), name="driver-detail"),
     path("drivers/", DriverListView.as_view(), name="driver-list"),
-    path("drivers/<int:pk>/", DriverDetailView.as_view(), name="driver-detail"),
     path("drivers/create/", DriverCreateView.as_view(), name="driver-create"),
     path(
         "drivers/<int:pk>/update/",
@@ -64,7 +65,9 @@ urlpatterns = [
     ),
     path("drivers/<int:pk>/delete/", DriverDeleteView.as_view(), name="driver-delete"),
     path("review/", MessageListView.as_view(), name="message-list"),
-    path("review/create/", MessageCreateView.as_view(), name="message-create")
+    path("review/like/", like_message, name="message-like"),
+    path("review/create/", MessageCreateView.as_view(), name="message-create"),
+    path("review/<int:pk>/", MessageDetailView.as_view(), name="message-detail")
 ]
 
 app_name = "taxi"

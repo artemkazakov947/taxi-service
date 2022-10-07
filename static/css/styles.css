@@ -10,12 +10,34 @@
 
 .nav {
   text-align: center;
-  background-color: black;
+  background-color: dimgray;
   padding: 10px 0;
 }
 
 .link {
   color: white;
   text-decoration: none;
-  padding: 0px 20px;
+  padding: 0px 120px;
+}
+
+.link-sidebar {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar-nav a:hover:not(.active) {;
+  color: white;
+  background-color: black;
+
+
+}
+
+.sidebar-nav {
+    display: block;
+    background-color: white;
+
+}
+.list-group-item {
+    background-color: dimgray;
+
 }

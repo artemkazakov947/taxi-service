@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <strong>Topic</strong>: {{ message.title }}<br>
+  <strong>{{ message.author.username }}</strong>: {{ message.text }} <br>
+  <strong>date</strong>: {{ message.date }}
+  <br>
+
+{% endblock %}

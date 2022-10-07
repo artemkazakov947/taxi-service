@@ -41,8 +41,28 @@ class Message(models.Model):
     title = models.CharField(max_length=63)
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name="massages")
+    author = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name="authors")
+    liked = models.ManyToManyField(Driver, related_name="likes", blank=True)
 
     def __str__(self):
         return f"Message: {self.text} About: {self.title}" \
                f"from: {self.author}"
+
+    @property
+    def nums_of_like(self):
+        return self.liked.all().count()
+
+
+LIKE_CHOICES = (
+    ("Like", "Like"),
+    ("Unlike", "Unlike"),
+)
+
+
+class Like(models.Model):
+    post = models.ForeignKey(Message, on_delete=models.CASCADE)
+    user = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default="Like", max_length=10)
+
+    def __str__(self):
+        return str(self.post)
