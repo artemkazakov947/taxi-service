@@ -44,6 +44,9 @@ class Message(models.Model):
     author = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name="authors")
     liked = models.ManyToManyField(Driver, related_name="likes", blank=True, default=None)
 
+    class Meta:
+        ordering = ["-date"]
+
     def __str__(self):
         return f"Message: {self.text} About: {self.title}" \
                f"from: {self.author}"
