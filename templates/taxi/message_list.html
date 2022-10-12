@@ -4,22 +4,33 @@
   <h1>Tell us!</h1>
   <a href="{% url 'taxi:message-create' %}" class="btn btn-primary">New message</a>
 {#  {% if massage_list %}#}
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Topic</th>
+      <th>Author</th>
+      <th>Text</th>
+      <th>data</th>
+      <th>Estimate</th>
+    </tr>
     {% for message in message_list %}
-      <div>
-        <strong>Topic</strong>: {{ message.title }}<br>
-        <strong>{{ message.author.username }}</strong>: {{ message.text }} <br>
-        <strong>date</strong>: {{ message.date }}
-        <a href="{% url 'taxi:message-detail' pk=message.id %}">Click to see detail.</a>
-
-        <form action="{% url 'taxi:message-like' %}" method="POST">
+    <tr>
+      <td><a href="{% url 'taxi:message-detail' pk=message.id %}">{{ message.id }}</a></td>
+      <td>{{ message.title }}</td>
+      <td><a href="{{ driver.get_absolute_url }}">{{ message.author.username }}</a></td>
+      <td>{{ message.text }}</td>
+      <td>{{ message.date }}</td>
+      <td><form action="{% url 'taxi:message-like' %}" method="POST">
           {% csrf_token %}
           <input type="hidden" name="message_id" value="{{ message.id }}">
-          <button type="submit" class="btn btn-primary">Like!</button>
+          {% if user not in message.liked.all %}
+            <button type="submit" class="btn btn-primary">Like!</button>
+          {% else %}
+            <button type="submit" class="btn btn-danger">Unlike</button>
+          {% endif %}
           <span>{{ message.liked.count }} likes!</span>
-        </form>
-        <br>
-        <hr>
-      </div>
+        </form></td>
+    </tr>
     {% endfor %}
 {#  {% else %}#}
 {#    <p>There are no messages!</p>#}

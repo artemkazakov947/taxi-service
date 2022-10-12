@@ -42,7 +42,7 @@ class Message(models.Model):
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name="authors")
-    liked = models.ManyToManyField(Driver, related_name="likes", blank=True)
+    liked = models.ManyToManyField(Driver, related_name="likes", blank=True, default=None)
 
     def __str__(self):
         return f"Message: {self.text} About: {self.title}" \
